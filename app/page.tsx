@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { db } from "@/lib/db/drizzle";
 
-export default function Page() {
+export default async function Page() {
+  const users = await db.query.user.findMany();
+
   return (
     <div>
-      <h1>Hello world</h1>
+      {users.map((u) => (
+        <p key={u.id}>{u.name}</p>
+      ))}
       <Button>Click me</Button>
     </div>
   );
