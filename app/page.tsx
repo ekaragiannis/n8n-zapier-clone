@@ -1,15 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { db } from "@/lib/db/drizzle";
+import { requireAuth } from "@/data/auth";
+import { getAccounts } from "@/data/user";
 
 export default async function Page() {
-  const users = await db.query.user.findMany();
-
-  return (
-    <div>
-      {users.map((u) => (
-        <p key={u.id}>{u.name}</p>
-      ))}
-      <Button>Click me</Button>
-    </div>
-  );
+  await requireAuth();
+  const accounts = await getAccounts();
+  return <div className="min-h-screen min-w-screen flex items-center justify-center">{JSON.stringify(accounts)}</div>;
 }
