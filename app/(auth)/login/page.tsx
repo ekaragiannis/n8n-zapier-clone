@@ -4,9 +4,5 @@ import { requireUnauth } from "@/data/auth";
 export default async function Page() {
   await requireUnauth();
 
-  return (
-    <div>
-      <LoginForm />
-    </div>
-  );
+  return <LoginForm />;
 }
