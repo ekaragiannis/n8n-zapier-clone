@@ -15,6 +15,13 @@
       "when": 1761343974435,
       "tag": "0001_panoramic_mister_sinister",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1761402583249,
+      "tag": "0002_tiresome_lady_bullseye",
+      "breakpoints": true
     }
   ]
 }

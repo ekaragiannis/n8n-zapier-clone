@@ -1,8 +1,17 @@
+import { CreateWorkflowButton } from "@/app/create-workflow-button";
+import { Logout } from "@/app/features/auth/components/logout";
 import { requireAuth } from "@/data/auth";
-import { getAccounts } from "@/data/user";
+import { getWorkflows } from "@/data/workflows";
 
 export default async function Page() {
   await requireAuth();
-  const accounts = await getAccounts();
-  return <div className="min-h-screen min-w-screen flex items-center justify-center">{JSON.stringify(accounts)}</div>;
+  const workflows = await getWorkflows();
+
+  return (
+    <div className="min-h-screen min-w-screen flex items-center justify-center flex-col gap-y-6">
+      <div>{JSON.stringify(workflows)}</div>
+      <CreateWorkflowButton />
+      <Logout />
+    </div>
+  );
 }
