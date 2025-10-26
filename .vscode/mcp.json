@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp/efthymios-karagiannis/n8n-zapier-clone",
+      "type": "http"
+    }
+  }
+}
