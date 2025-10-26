@@ -12,6 +12,6 @@ A workflow automation platform inspired by n8n and Zapier. Build, manage, and ex
 - **Background Jobs**: Inngest
 - **AI**: Google Gemini (via Vercel AI SDK)
 - **Styling**: Tailwind CSS
-- **UI Components**: Radix UI
+- **UI Components**: Shadcn
 - **Error Tracking**: Sentry
 - **Code Quality**: Biome
