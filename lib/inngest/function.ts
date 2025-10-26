@@ -1,24 +1,15 @@
-import { db } from "../db/drizzle";
-import { workflow } from "../db/schema";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { generateText } from "ai";
 import { inngest } from "./client";
 
-export const helloWorld = inngest.createFunction(
-  { id: "hello-world" },
-  { event: "test/hello.world" },
-  async ({ event, step }) => {
-    await step.sleep("fetching-video", "5s");
+const google = createGoogleGenerativeAI();
 
-    // Transcribing
-    await step.sleep("transcribing", "5s");
+export const execute = inngest.createFunction({ id: "execute" }, { event: "execute/ai" }, async ({ event, step }) => {
+  const { steps } = await step.ai.wrap("gemini-generate-text", generateText, {
+    system: "You are a helpful assistant",
+    prompt: "What is 2+2?",
+    model: google("gemini-2.5-flash"),
+  });
 
-    // Sending trnscription to AI
-    await step.sleep("sending-to-ai", "5s");
-
-    // Insert worrkflow
-    await step.run("crete-workflow", () => {
-      return db.insert(workflow).values({
-        name: "workflow-from-inngest",
-      });
-    });
-  },
-);
+  return steps;
+});
